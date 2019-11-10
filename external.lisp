@@ -25,4 +25,5 @@ The following limitations apply:
   `(call-with-file-mapping ,filename
                            (lambda (,array)
                              (declare (dynamic-extent ,array))
+                             (declare (type (simple-array (unsigned-byte 8)) ,array))
                              ,@forms)))
