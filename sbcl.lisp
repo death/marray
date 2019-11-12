@@ -13,11 +13,11 @@
 (defconstant map-uninitialized #x4000000)
 
 (defun reserve-pages (n)
-  "Reserve N pages of memory and return a pointer to the first."
+  "Reserve N read-only pages of memory and return a pointer to the
+first."
   (sb-posix:mmap nil
                  (* n *page-size*)
-                 (logior sb-posix:prot-read
-                         sb-posix:prot-write)
+                 sb-posix:prot-read
                  (logior sb-posix:map-private
                          sb-posix:map-anon
                          map-noreserve
