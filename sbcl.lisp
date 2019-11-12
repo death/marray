@@ -9,6 +9,9 @@
 (defvar *page-size*
   (sb-posix:getpagesize))
 
+(defconstant map-noreserve #x4000)
+(defconstant map-uninitialized #x4000000)
+
 (defun reserve-pages (n)
   "Reserve N pages of memory and return a pointer to the first."
   (sb-posix:mmap nil
@@ -16,7 +19,9 @@
                  (logior sb-posix:prot-read
                          sb-posix:prot-write)
                  (logior sb-posix:map-private
-                         sb-posix:map-anon)
+                         sb-posix:map-anon
+                         map-noreserve
+                         map-uninitialized)
                  -1
                  0))
 
