@@ -60,6 +60,15 @@ header."
                              sb-posix:map-fixed)
                      fd
                      0))
+    (sb-posix:mmap pre
+                   *page-size*
+                   (logior sb-posix:prot-read
+                           sb-posix:prot-write)
+                   (logior sb-posix:map-private
+                           sb-posix:map-fixed
+                           sb-posix:map-anon)
+                   -1
+                   0)
     (values (place-array pre size)
             pre
             n)))
