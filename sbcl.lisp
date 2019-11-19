@@ -80,7 +80,7 @@ header."
 (defun call-with-file-mapping (filename function)
   "Call FUNCTION with an octet vector with elements representing the
 contents of the file designated by FILENAME."
-  (let ((fd (sb-posix:open filename sb-posix:o-rdonly)))
+  (let ((fd (sb-posix:open (truename filename) sb-posix:o-rdonly)))
     (unwind-protect
          (sb-sys:without-interrupts
            (multiple-value-bind (array pre n)
