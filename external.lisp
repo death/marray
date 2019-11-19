@@ -24,6 +24,5 @@ The following limitations apply:
 - The array is valid only for the dynamic extent of the evaluation of the forms."
   `(call-with-file-mapping ,filename
                            (lambda (,array)
-                             (declare (dynamic-extent ,array))
                              (declare (type (simple-array (unsigned-byte 8)) ,array))
                              ,@forms)))
